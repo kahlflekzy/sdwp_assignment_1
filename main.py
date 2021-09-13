@@ -8,6 +8,7 @@ Created on Tue Sep  7 06:39:06 2021
 from task1 import decorator1
 from task2 import decorator2
 from task3 import Decorator as decorator3, rank
+from task4 import Decorator as decorator4
 
 @decorator1
 def kahl():
@@ -16,7 +17,6 @@ def kahl():
 
   Returns:
     None.
-
   """
   x = 0
   while True:
@@ -25,13 +25,50 @@ def kahl():
     x += 1
     
 
+# ----------------------------------------------------------------------
+@decorator1
+def sum_(r: list):
+    """
+    Sum up items in the list r.
+    
+    This is part of a method I wrote for a class which performs matrix 
+    calculations (dot products). It's useful for my DNLRS course.
+    
+    You can see some of the doctest below to understand how it works. 
+    It basically sums up values in a  list. But there are some few perks, 
+    particularly when the items in the list aren't all numbers, 
+    it performs a peculiar addition.
+    
+    >>> Matrix.sum_(['c1', 1, 's1'])
+    'c1+1+s1'
+    >>> Matrix.sum_(['c1', 1, 's1', 0])
+    'c1+1+s1'
+    >>> Matrix.sum_([1, 1, 2, 2])
+    6
+    >>> Matrix.sum_([0, 1])
+    1
+    >>> Matrix.sum_([0, 0])
+    0
 
-@decorator3
+    :param r:
+    :return:
+    """
+    e = [str(i) for i in filter(lambda x: x != 0, r)]
+    if not e:
+        return 0
+    to_sum = '+'.join(e)
+    try:
+        return eval(to_sum)
+    except NameError:
+        return to_sum
+
+@decorator1
 def quadratic_eqn(a: int, b: int, c: int=3) -> tuple:
   """
   Calculate the roots of a quadratic equation.
   
-  Based on the coefficients of the terms of the equation.
+  Based on the coefficients of the terms of the equation. Returned value could
+  be real values or complex values.
 
   Args:
     a (int): coefficient of x^2.
@@ -60,7 +97,7 @@ def quadratic_eqn(a: int, b: int, c: int=3) -> tuple:
     x2 = complex(r, -i)
   return x1, x2
 
-@decorator3
+@decorator1
 def pascal(n: int):
   """
   Create and prints a pascal triangle based on my own algorithm.
@@ -88,8 +125,14 @@ def pascal(n: int):
       out = new
       print(out)
 
+kahl()
+kahl()
+sum_([1, 2, 3, 4])
+sum_(['a', 1, 'b', 2])
 pascal(20)
 pascal(20)
 quadratic_eqn(1, 2, 3)
 quadratic_eqn(1, 2, 3)
-rank()  # only call this when testing decorator3, comment out otherwise
+
+# only call below when testing decorator3, comment out otherwise
+# rank()  

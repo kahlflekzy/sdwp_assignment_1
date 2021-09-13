@@ -24,7 +24,15 @@ class Decorator:
     self.count = 0
   def __call__(self, *args, **kargs):
     """
+    Call function and perform decoration task.
     
+    In this virtual method, we pass all output to a file in the current 
+    working directory. The file is named 'task_3_output.txt'
+    
+    The contents written to the file includes the decorations performed on the 
+    function. And the output of the function, 
+    including results returned by the function and outputs which the function
+    sends to stdout (prints).
 
     Args:
       *args (tuple): All positional arguments.
@@ -34,7 +42,7 @@ class Decorator:
       None.
 
     """
-    import time, io, contextlib, inspect, datetime
+    import time, io, contextlib, inspect
     self.count += 1
     func = self.func
     start = time.perf_counter()

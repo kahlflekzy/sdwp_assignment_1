@@ -22,7 +22,13 @@ class Decorator:
     self.count = 0
   def __call__(self, *args, **kargs):
     """
+    Call function passed to constructor.
     
+    Here we catch all errors (Exceptions) in a try and except block. We pass
+    these to a log file named 'task_4_error_log.txt'.
+    
+    The outputs and results of function, with it's returned value and the
+    functions descriptions are saved in a file named 'task_4_output.txt'
 
     Args:
       *args (tuple): All positional arguments.
@@ -41,7 +47,7 @@ class Decorator:
       try:
         c0 = func(*args, **kargs)
       except Exception as e:
-        with open('task_3_error_log.txt', 'a+') as file:
+        with open('task_4_error_log.txt', 'a+') as file:
           file.write(f"{func.__name__}\n{e}\n{datetime.datetime.now()}\n\n")
         c0 = None
     c = f"{c0}\n{out.getvalue()}"
@@ -60,7 +66,7 @@ Source: {inspect.getsource(func)}
 
 Output: {c}
     """
-    with open('task_3_output.txt', 'w') as file:
+    with open('task_4_output.txt', 'w') as file:
       file.write(out)
     self.res.append((func.__name__, elapsed))
     return func

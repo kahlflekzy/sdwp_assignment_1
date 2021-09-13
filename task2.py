@@ -17,7 +17,7 @@ def decorator2(func):
   import time, inspect, contextlib, io
   def wrapper(*args, **kargs):
     """
-    Wrap function with supplied arguments and perform decotation.
+    Wrap function with supplied arguments and perform decoration.
 
     Args:
       *args (TYPE): DESCRIPTION.

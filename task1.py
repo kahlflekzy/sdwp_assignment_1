@@ -7,8 +7,8 @@ Created on Tue Sep  7 07:40:51 2021
 
 def decorator1(func):
   """
-    Create a function decorator that calculates function execution time and the
-    number of times the decorated function was called (function call trace).
+  Create a function decorator that calculates function execution time and the
+  number of times the decorated function was called (function call trace).
   """
   count = 0
   import time, contextlib, io
